@@ -1,0 +1,17 @@
+{
+    "name": "oges-foundation",
+    "version": "1.0.0",
+    "description": "A charity website for OGE’s Foundation - Make Them Smile Again.",
+    "main": "index.html",
+    "scripts": {
+      "start": "live-server",
+      "build": "echo 'No build step needed for static site'"
+    },
+    "author": "OGE’s Foundation",
+    "license": "MIT",
+    "dependencies": {},
+    "devDependencies": {
+      "live-server": "^1.2.2"
+    }
+  }
+  

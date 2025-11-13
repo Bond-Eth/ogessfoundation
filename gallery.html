@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gallery — OGE's Foundation</title>
+  <link rel="icon" href="/image/logo.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <style>
+    /* ===== Gallery Grid ===== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s ease;
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.03);
+    }
+    @media (max-width: 980px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ===== Lightbox Styles ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 10px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+    .lightbox-content:hover {
+      transform: scale(1.02);
+    }
+    .lightbox .close {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      color: #fff;
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .lightbox .close:hover {
+      color: #ff7b00;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html">
+        <img src="/image/logo.png" alt="logo" class="logo" />
+        <span class="brand-text">OGE's Foundation</span>
+      </a>
+      <nav class="nav">
+        <button class="hamburger" aria-label="Open navigation"><span></span><span></span><span></span></button>
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="partners.html">Partners</a></li>
+          <li><a href="stats.html">Stats</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="gallery.html" class="active">Gallery</a></li>
+          <li><a href="donate.html" class="btn btn-donate">Donate</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container page-section">
+    <h1>Gallery</h1>
+    <p class="lead">Photos from our programs and events.</p>
+
+    <div class="gallery-grid gallery">
+      <img src="/image/gallery1.jpg" alt="Feeding outreach" />
+      <img src="/image/gallery2.jpg" alt="School support program" />
+      <img src="/image/gallery3.jpg" alt="Volunteers in action" />
+      <img src="/image/gallery4.jpg" alt="Health outreach" />
+      <img src="/image/gallery5.jpg" alt="Community engagement" />
+      <img src="/image/gallery6.jpg" alt="Child education program" />
+      <img src="/image/gallery7.jpg" alt="Team activity" />
+    </div>
+  </main>
+
+  <!-- Lightbox HTML -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" alt="Expanded view" />
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="/image/logo.png" alt="logo" class="footer-logo" />
+        <p class="motto">Make Them Smile Again</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <p>Email: <a href="mailto:ogechiogbaga9@gmail.com">ogechiogbaga9@gmail.com</a></p>
+        <p>Phone / WhatsApp: +234 905 761 2184</p>
+      </div>
+
+      <div>
+        <h4>Follow</h4>
+        <div class="socials">
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="WhatsApp">WhatsApp</a>
+          <a href="#" aria-label="X">X</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright container">© <span id="year"></span> OGE's Foundation</div>
+  </footer>
+
+  <script src="/scripts/app.js"></script>
+
+  <script>
+    // ===== Lightbox Script =====
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.querySelector('.lightbox .close');
+
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+      });
+    });
+
+    closeBtn.onclick = () => (lightbox.style.display = 'none');
+    lightbox.onclick = e => {
+      if (e.target === lightbox) lightbox.style.display = 'none';
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Team — OGE's Foundation</title>
+  <link rel="icon" href="/images/logo.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    /* small additions for team grid */
+    .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+    .member{background:#fff;padding:1rem;border-radius:8px;text-align:center;box-shadow:0 8px 18px rgba(0,0,0,0.04)}
+    .member img{width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:.6rem}
+    @media (max-width:980px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html">
+        <img src="/images/logo.png" alt="logo" class="logo" />
+        <span class="brand-text">OGE's Foundation</span>
+      </a>
+      <nav class="nav">
+        <button class="hamburger" aria-label="Open navigation"><span></span><span></span><span></span></button>
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="partners.html">Partners</a></li>
+          <li><a href="stats.html">Stats</a></li>
+          <li><a href="team.html" class="active">Team</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="donate.html" class="btn btn-donate">Donate</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container page-section">
+    <h1>Our Team</h1>
+    <p class="lead">Meet the team.</p>
+
+    <div class="team-grid">
+      <div class="member">
+        <img src="/image/oge.jpg" alt="Team member 1" />
+        <h4>Ogechi Ernestina Igboke</h4>
+        <p class="muted">Founder</p>
+      </div>
+
+      <div class="member">
+        <img src="/image/vivian.jpg" alt="Team member 2" />
+        <h4>Vivian Olivia Onwe</h4>
+        <p class="muted">Program Director</p>
+      </div>
+
+      <div class="member">
+        <img src="/image/bond.jpg" alt="Team member 3" />
+        <h4>Bond Edwyn</h4>
+        <p class="muted">Project Manager/Developer</p>
+      </div>
+
+      <div class="member">
+        <img src="/image/adams.jpg" alt="Team member 4" />
+        <h4>Miracle Adams</h4>
+        <p class="muted">Program Officer</p>
+      </div>
+
+      <div class="member">
+        <img src="/image/isreal.jpg" alt="Team member 5" />
+        <h4>Chibueze Israel Igboke</h4>
+        <p class="muted">Field Officer</p>
+      </div>
+
+      <div class="member">
+        <img src="/image/emris.jpg" alt="Team member 6" />
+        <h4>Mr Emris</h4>
+        <p class="muted">Monitoring & Evaluation/Advocacy Officer</p>
+      </div>
+
+      <div class="member">
+        <img src="/image.jpg" alt="Team member 7" />
+        <h4>Chisom Perpetual Chibueze</h4>
+        <p class="muted">Marketing Director</p>
+      </div>
+
+      <div class="member">
+        <img src="/image/sandra.jpg" alt="Team member 8" />
+        <h4>Mrs Sndra Daniel</h4>
+        <p class="muted">P.A to the Executive Director</p>
+      </div>
+
+      <div class="member">
+        <img src="/image/favour.jpg" alt="Team member 8" />
+        <h4>Ugwuezi Favour</h4>
+        <p class="muted">Financial Manager</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="/image/logo.png" alt="logo" class="footer-logo" />
+        <p class="motto">Make Them Smile Again</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <p>Email: <a href="ogechiogbaga9@gmail.com">ogechiogbaga9@gmail.com</a></p>
+        <p>Phone / WhatsApp:  +234 905 761 2184</p>
+      </div>
+
+      <div>
+        <h4>Follow</h4>
+        <div class="socials">
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="WhatsApp">WhatsApp</a>
+          <a href="#" aria-label="X">X</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright container">© <span id="year"></span> OGE's Foundation</div>
+  </footer>
+
+  <script src="/scripts/app.js"></script>
+</body>
+</html>

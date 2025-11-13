@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OGE's Foundation — Home</title>
+  <link rel="icon" href="/image/logo.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    /* ===== HERO SECTION STYLING ===== */
+    .hero {
+      position: relative;
+      height: 90vh;
+      background: linear-gradient(rgba(244,124,32,0.75), rgba(0,0,0,0.8)),
+                  url('/image/hero.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+      text-align: left;
+      z-index: 2;
+      position: relative;
+    }
+
+    .hero-text {
+      flex: 1 1 45%;
+      padding: 2rem;
+      animation: fadeInUp 1.2s ease forwards;
+    }
+
+    .hero-text h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #eee;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .hero-cta .btn {
+      padding: 0.9rem 1.6rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: #F47C20;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: #d86c18;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid #fff;
+      color: #fff;
+    }
+
+    .btn-secondary:hover {
+      background: #fff;
+      color: #333;
+    }
+
+    .hero-media {
+      flex: 1 1 45%;
+      display: flex;
+      justify-content: center;
+      animation: fadeInUp 1.4s ease forwards;
+    }
+
+    .hero-media img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .hero-grid {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-text, .hero-media {
+        flex: 1 1 100%;
+        padding: 1rem;
+      }
+
+      .hero-media img {
+        width: 85%;
+      }
+
+      .hero-cta {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Site header / nav -->
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html">
+        <img src="/image/logo.png" alt="OGE's Foundation logo" class="logo" />
+        <span class="brand-text">OGE's Foundation</span>
+      </a>
+
+      <nav class="nav">
+        <button class="hamburger" id="hamburger" aria-label="Open navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-list" id="nav-list">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="partners.html">Partners</a></li>
+          <li><a href="stats.html">Stats</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="donate.html" class="btn btn-donate">Donate</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h1>Make Them Smile Again</h1>
+          <p class="lead">OGE’s Foundation builds hope — feeding kids, educating children and supporting vulnerable families.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="donate.html">Donate now</a>
+            <a class="btn btn-secondary" href="stats.html">Our impact</a>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- Quick stats (small) -->
+    <section class="home-stats container">
+      <div class="stat-card">
+        <p class="stat-value" data-value="20000000">₦0</p>
+        <p class="stat-label">Total raised</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-value" data-value="16000000">₦0</p>
+        <p class="stat-label">Total spent</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-value" data-value="450">0</p>
+        <p class="stat-label">Children fed</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-value" data-value="320">0</p>
+        <p class="stat-label">Children in school</p>
+      </div>
+    </section>
+
+    <!-- Testimonies -->
+    <section class="testimonies container page-section">
+      <h2>What people say</h2>
+      <div class="testimony-list">
+        <article class="testimony">
+          <img src="/image/image 1.jpeg" alt="Testimony image" />
+          <div>
+            <p class="quote">"The foundation helped my child return to school..."</p>
+            <p class="author">— chinaza oke</p>
+          </div>
+        </article>
+        <article class="testimony">
+          <img src="/image/health.jpg" alt="Testimony image" />
+          <div>
+            <p class="quote">"We received support when we needed it most..."</p>
+            <p class="author">— Health care</p>
+          </div>
+        </article>
+        <article class="testimony">
+          <img src="/image/hero.jpg" alt="Testimony image" />
+          <div>
+            <p class="quote">"Volunteers are caring and consistent."</p>
+            <p class="author">— Community</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Programs preview -->
+    <section class="programs container page-section">
+      <h2>Our programs</h2>
+      <div class="program-grid">
+        <div class="program">
+          <h3>Feeding Program</h3>
+          <p>Regular food distribution to vulnerable children.</p>
+        </div>
+        <div class="program">
+          <h3>Education Support</h3>
+          <p>School supplies, tuition subsidies and mentorship.</p>
+        </div>
+        <div class="program">
+          <h3>Health Outreach</h3>
+          <p>Health camps and medical referrals.</p>
+        </div>
+        <div class="program">
+          <h3>...and more</h3>
+          <p>Other community support programs.</p>
+        </div>
+      </div>
+      <div class="center"><a class="btn" href="programs.html">See all programs</a></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="/image/logo.png" alt="logo" class="footer-logo" />
+        <p class="motto">Make Them Smile Again</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <p>Email: <a href="ogechiogbaga9@gmail.com">ogechiogbaga9@gmail.com</a></p>
+        <p>Phone / WhatsApp:  +234 905 761 2184</p>
+      </div>
+
+      <div>
+        <h4>Follow</h4>
+        <div class="socials">
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="WhatsApp">WhatsApp</a>
+          <a href="#" aria-label="X">X</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright container">© <span id="year"></span> OGE's Foundation</div>
+  </footer>
+
+  <script src="/scripts/app.js"></script>
+</body>
+</html>

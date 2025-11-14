@@ -1,79 +1,126 @@
 // main.js - shared scripts
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
   // set current year in all IDs if present
-  ['year','year2','year3'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el) el.textContent=new Date().getFullYear();
+  ['year', 'year2', 'year3'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = new Date().getFullYear();
   });
 
-  // hamburger toggles (works with multiple hamburger instances)
-  document.querySelectorAll('.hamburger').forEach(btn=>{
-    btn.addEventListener('click', function(){
+  // -----------------------------------------------------------------
+  // HAMBURGER TOGGLES (Updated with mobile-nav-overlay)
+  // -----------------------------------------------------------------
+  document.querySelectorAll('.hamburger').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+
+      // find the correct header/nav-list
       const header = btn.closest('.header-row') || document;
       const navList = header.querySelector('.nav-list');
-      if(navList){
+
+      if (navList) {
         navList.classList.toggle('open');
+        navList.classList.toggle('mobile-nav-overlay');  // <-- overlay added
         btn.classList.toggle('is-active');
       }
     });
   });
 
-  // Close mobile menu when clicking a link
-  document.querySelectorAll('.nav-list a').forEach(a=>{
-    a.addEventListener('click', function(){
-      const nav = a.closest('.nav-list');
-      if(nav && nav.classList.contains('open')){
-        nav.classList.remove('open');
+  // -----------------------------------------------------------------
+  // CLOSE MENU WHEN CLICKING OUTSIDE
+  // -----------------------------------------------------------------
+  document.addEventListener('click', e => {
+    document.querySelectorAll('.nav-list.open').forEach(openNav => {
+      const header = openNav.closest('.header-row');
+      const hamburger = header ? header.querySelector('.hamburger') : null;
+
+      const clickedInsideMenu = openNav.contains(e.target);
+      const clickedHamburger = hamburger && hamburger.contains(e.target);
+
+      if (!clickedInsideMenu && !clickedHamburger) {
+        openNav.classList.remove('open');
+        openNav.classList.remove('mobile-nav-overlay');
+        if (hamburger) hamburger.classList.remove('is-active');
       }
     });
   });
 
+  // -----------------------------------------------------------------
+  // Close mobile menu when clicking a nav link
+  // -----------------------------------------------------------------
+  document.querySelectorAll('.nav-list a').forEach(a => {
+    a.addEventListener('click', () => {
+      const nav = a.closest('.nav-list');
+      if (nav && nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        nav.classList.remove('mobile-nav-overlay');
+        const hamburger = nav.closest('.header-row')?.querySelector('.hamburger');
+        if (hamburger) hamburger.classList.remove('is-active');
+      }
+    });
+  });
+
+  // -----------------------------------------------------------------
   // Animated counters: supports Naira and plain numbers.
-  function animateValue(el, start, end, duration, isCurrency){
-    let startTime=null;
-    function step(timestamp){
-      if(!startTime) startTime=timestamp;
-      const progress=Math.min((timestamp-startTime)/duration,1);
-      const value=Math.floor(progress*(end-start)+start);
-      if(isCurrency){
-        el.textContent = new Intl.NumberFormat('en-NG', { style:'currency', currency:'NGN', maximumFractionDigits:0 }).format(value);
+  // -----------------------------------------------------------------
+  function animateValue(el, start, end, duration, isCurrency) {
+    let startTime = null;
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const value = Math.floor(progress * (end - start) + start);
+
+      if (isCurrency) {
+        el.textContent = new Intl.NumberFormat('en-NG', {
+          style: 'currency',
+          currency: 'NGN',
+          maximumFractionDigits: 0
+        }).format(value);
       } else {
         el.textContent = value.toLocaleString();
       }
-      if(progress<1){
-        window.requestAnimationFrame(step);
-      }
+
+      if (progress < 1) window.requestAnimationFrame(step);
     }
     window.requestAnimationFrame(step);
   }
 
-  // run counters when they appear in viewport
+  // run counters when in view
   const counters = document.querySelectorAll('.stat-value');
   const seen = new WeakSet();
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
         const el = entry.target;
-        if(seen.has(el)) return;
+        if (seen.has(el)) return;
         seen.add(el);
-        const raw = el.getAttribute('data-value') || el.textContent.replace(/\D/g,'');
-        const end = parseInt(raw,10) || 0;
-        const isCurrency = el.textContent.trim().startsWith('₦') || el.classList.contains('naira') || el.closest('.stats-grid');
+
+        const raw = el.getAttribute('data-value') || el.textContent.replace(/\D/g, '');
+        const end = parseInt(raw, 10) || 0;
+
+        const isCurrency =
+          el.textContent.trim().startsWith('₦') ||
+          el.classList.contains('naira') ||
+          el.closest('.stats-grid');
+
         animateValue(el, 0, end, 1400, isCurrency);
       }
     });
-  }, {threshold:0.3});
-  counters.forEach(c=>io.observe(c));
+  }, { threshold: 0.3 });
+  counters.forEach(c => io.observe(c));
 
   // tiny fade-in on load
-  document.querySelectorAll('.page-section, .hero, .program').forEach(el=>el.classList.add('fade-in'));
+  document
+    .querySelectorAll('.page-section, .hero, .program')
+    .forEach(el => el.classList.add('fade-in'));
 
-
+  // -----------------------------------------------------------------
+  // EmailJS contact form
+  // -----------------------------------------------------------------
   emailjs.init('YOUR_PUBLIC_KEY');
 
   const contactForm = document.getElementById('contact-form');
-  if(contactForm){
-    contactForm.addEventListener('submit', function(e){
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
       const formData = {
@@ -82,15 +129,14 @@ document.addEventListener('DOMContentLoaded', function(){
         message: document.getElementById('message').value,
       };
 
-      // update with your own EmailJS service & template IDs
       emailjs.send('ogechiogbaga9@gmail.com', 'YOUR_TEMPLATE_ID', formData)
         .then(() => {
-          alert('✅ Message sent successfully!');
+          alert('Message sent successfully!');
           contactForm.reset();
         })
         .catch((err) => {
           console.error('EmailJS Error:', err);
-          alert('❌ Something went wrong. Please try again.');
+          alert('Something went wrong. Please try again.');
         });
     });
   }

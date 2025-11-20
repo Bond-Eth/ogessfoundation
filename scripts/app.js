@@ -6,9 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (el) el.textContent = new Date().getFullYear();
   });
 
-  // -----------------------------------------------------------------
-  // HAMBURGER TOGGLES (Updated with mobile-nav-overlay)
-  // -----------------------------------------------------------------
+
   document.querySelectorAll('.hamburger').forEach(btn => {
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -25,9 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // -----------------------------------------------------------------
-  // CLOSE MENU WHEN CLICKING OUTSIDE
-  // -----------------------------------------------------------------
+
   document.addEventListener('click', e => {
     document.querySelectorAll('.nav-list.open').forEach(openNav => {
       const header = openNav.closest('.header-row');
@@ -44,9 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // -----------------------------------------------------------------
-  // Close mobile menu when clicking a nav link
-  // -----------------------------------------------------------------
+
   document.querySelectorAll('.nav-list a').forEach(a => {
     a.addEventListener('click', () => {
       const nav = a.closest('.nav-list');
@@ -59,9 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // -----------------------------------------------------------------
-  // Animated counters: supports Naira and plain numbers.
-  // -----------------------------------------------------------------
+
   function animateValue(el, start, end, duration, isCurrency) {
     let startTime = null;
     function step(timestamp) {
@@ -84,38 +76,33 @@ document.addEventListener('DOMContentLoaded', function () {
     window.requestAnimationFrame(step);
   }
 
-  // run counters when in view
-  const counters = document.querySelectorAll('.stat-value');
-  const seen = new WeakSet();
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        if (seen.has(el)) return;
-        seen.add(el);
 
-        const raw = el.getAttribute('data-value') || el.textContent.replace(/\D/g, '');
-        const end = parseInt(raw, 10) || 0;
+const counters = document.querySelectorAll('.stat-value');
+const seen = new WeakSet();
+const io = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      if (seen.has(el)) return;
+      seen.add(el);
 
-        const isCurrency =
-          el.textContent.trim().startsWith('₦') ||
-          el.classList.contains('naira') ||
-          el.closest('.stats-grid');
+      const raw = el.getAttribute('data-value') || el.textContent.replace(/\D/g, '');
+      const end = parseInt(raw, 10) || 0;
 
-        animateValue(el, 0, end, 1400, isCurrency);
-      }
-    });
-  }, { threshold: 0.3 });
-  counters.forEach(c => io.observe(c));
+     
+      const isCurrency =
+        el.textContent.trim().startsWith('₦') ||
+        el.classList.contains('naira');
 
-  // tiny fade-in on load
-  document
-    .querySelectorAll('.page-section, .hero, .program')
-    .forEach(el => el.classList.add('fade-in'));
+      animateValue(el, 0, end, 1400, isCurrency);
+    }
+  });
+}, { threshold: 0.3 });
 
-  // -----------------------------------------------------------------
-  // EmailJS contact form
-  // -----------------------------------------------------------------
+counters.forEach(c => io.observe(c));
+
+
+ 
   emailjs.init('YOUR_PUBLIC_KEY');
 
   const contactForm = document.getElementById('contact-form');

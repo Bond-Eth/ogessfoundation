@@ -37,7 +37,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   padding-top: var(--header-height); /* Push content below fixed header */
   overflow-x: hidden;
-  display: none;
 }
 
 /* Fluid container */
